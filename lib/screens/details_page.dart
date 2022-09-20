@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:game_info/models/data_model.dart';
+import 'package:game_info/screens/page_web_view/gamepower_web_view.dart';
+import 'package:game_info/screens/page_web_view/get_game_web_view.dart';
 
 class DetailsPage extends StatelessWidget {
   // static const String idScreen = "detailsPage";
   final DataModel dataModel;
-   DetailsPage({Key? key, required this.dataModel}) : super(key: key);
+  const DetailsPage({Key? key, required this.dataModel}) : super(key: key);
 
   @override
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -94,43 +98,55 @@ class DetailsPage extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Container(
-                          padding:const EdgeInsets.all(4),
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF91219B),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(4.0),
-                              child: Text("Open In "
-                                  "\Gamerpower",
-                                style:TextStyle(
-                                  fontSize: 22.0,
-                                  fontWeight: FontWeight.bold,
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder:
+                                (context)=> GamePowerWebView(dataModel: dataModel,)));
+                          },
+                          child: Container(
+                            padding:const EdgeInsets.all(4),
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF91219B),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Center(
+                              child: Padding(
+                                padding: EdgeInsets.all(4.0),
+                                child: Text("Open In "
+                                    "\Gamerpower",
+                                  style:TextStyle(
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.bold,
 
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
                        const SizedBox(width: 10,),
-                        Container(
-                          padding:const EdgeInsets.all(4),
-                          height: 80,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF08A4B7),
-                         borderRadius: BorderRadius.circular(12),
-                          ),
-                            child: const Center(
-                            child: Padding(
-                              padding:EdgeInsets.all(4.0),
-                              child: Text("Get the game",
-                                style:TextStyle(
-                                  fontSize: 22.0,
-                                  fontWeight: FontWeight.bold,
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context,  MaterialPageRoute(builder:
+                                (context)=> GetGameWebView(dataModel: dataModel)));
+                          },
+                          child: Container(
+                            padding:const EdgeInsets.all(4),
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF08A4B7),
+                           borderRadius: BorderRadius.circular(12),
+                            ),
+                              child: const Center(
+                              child: Padding(
+                                padding:EdgeInsets.all(4.0),
+                                child: Text("Get the game",
+                                  style:TextStyle(
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.bold,
 
+                                  ),
                                 ),
                               ),
                             ),
