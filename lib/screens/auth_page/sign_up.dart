@@ -1,19 +1,20 @@
-
 import 'package:flutter/material.dart';
-import 'package:game_info/screens/auth_page/sign_up.dart';
+import 'package:game_info/screens/auth_page/login_page.dart';
+import 'package:game_info/screens/landing_page.dart';
 
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
-  static const String idScreen = "login";
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
+  static const String idScreen = "signUp";
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController nameTextEditingController = TextEditingController();
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
+  TextEditingController numberTextEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,17 @@ class _LoginPageState extends State<LoginPage> {
                       "assets/game.png",
                     ),
                   ),
-
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 16),
+                    child: TextFormField(
+                      controller: nameTextEditingController,
+                      decoration: const InputDecoration(
+                        border: UnderlineInputBorder(),
+                        labelText: 'Name',
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 16),
@@ -42,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                       controller: emailTextEditingController,
                       decoration: const InputDecoration(
                         border: UnderlineInputBorder(),
-                        labelText: 'Username or Email',
+                        labelText: 'Email',
                       ),
                     ),
                   ),
@@ -57,39 +68,22 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: const Text(
-                            "Forgot passcode?",
-                            style: TextStyle(
-                              color: Color(0xFF0083FF),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.09,
-                  ),
-                  // buttonLogin(context),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
-                  ),
                   TextButton(
                       onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, SignUpPage.idScreen, (route) => false);
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const LoginPage()));
                       },
                       child: const Text(
-                        "Do you have an account? Sign Up here",
-                      ))
+                        "Do you have an account? Login here",
+                      )),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const LandingPage()));
+                      },
+                      child: const Text(
+                        "Sign Up",
+                      )),
                 ],
               ),
             ),
